@@ -1,0 +1,20 @@
+name: Supabase Keep-Alive Cron
+
+on:
+  schedule:
+    # Runs every 3 days at 00:00 UTC to ensure Supabase never sleeps/pauses
+    - cron: '0 0 */3 * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Database to Prevent Inactivity Pause
+        run: |
+          echo "Sending keep-alive ping to Supabase..."
+          curl -s -o /dev/null -w "%{http_code}" \
+            -H "apikey: sb_publishable_gGMfPnbl5qk65Sn46C8dqA_wcJXKy0Q" \
+            -H "Authorization: Bearer sb_publishable_gGMfPnbl5qk65Sn46C8dqA_wcJXKy0Q" \
+            "https://mlobidzdaxvxlnhgoidf.supabase.co/rest/v1/categories?select=id&limit=1"
+          echo "Keep-alive ping successful. Supabase database is active."
