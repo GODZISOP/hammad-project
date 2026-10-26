@@ -173,8 +173,12 @@ export default function NewArtworkPage() {
       router.push("/admin/artworks");
       router.refresh();
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Failed to create artwork";
-      error(msg);
+      console.error("Create artwork error:", err);
+      const postgrestErr = err as { message?: string; details?: string; hint?: string };
+      const msg =
+        postgrestErr?.message ||
+        (err instanceof Error ? err.message : "Failed to create artwork");
+      error(postgrestErr?.details ? `${msg} (${postgrestErr.details})` : msg);
     } finally {
       setSubmitting(false);
     }
