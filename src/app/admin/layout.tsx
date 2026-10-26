@@ -1,6 +1,8 @@
 import React from "react";
 import { AdminLayoutClient } from "@/components/admin/AdminLayoutClient";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Admin Dashboard // Creative CMS",
   robots: {
