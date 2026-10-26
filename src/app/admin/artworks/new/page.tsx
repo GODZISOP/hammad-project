@@ -176,12 +176,24 @@ export default function NewArtworkPage() {
         }
       }
 
-      // 1. Insert artwork record
+      // 1. Ensure slug is unique
+      let candidateSlug = slug.trim() || slugify(title);
+      const { data: existingArt } = await supabase
+        .from("artworks")
+        .select("id")
+        .eq("slug", candidateSlug)
+        .maybeSingle();
+
+      if (existingArt) {
+        candidateSlug = `${candidateSlug}-${Math.floor(100 + Math.random() * 900)}`;
+      }
+
+      // 2. Insert artwork record
       const { data: insertedArt, error: artErr } = await supabase
         .from("artworks")
         .insert({
           title: title.trim(),
-          slug: slug.trim() || slugify(title),
+          slug: candidateSlug,
           category_id: finalCategoryId,
           short_description: shortDescription.trim() || null,
           description: description.trim() || null,
