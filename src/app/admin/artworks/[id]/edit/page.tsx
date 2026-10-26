@@ -119,13 +119,27 @@ export default function EditArtworkPage() {
         .map((t) => t.trim())
         .filter((t) => t.length > 0);
 
+      // Validate or resolve category UUID
+      let finalCategoryId: string | null = categoryId;
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      if (finalCategoryId && !uuidRegex.test(finalCategoryId)) {
+        const catSlug = finalCategoryId.replace(/^cat-/, "");
+        const { data: foundCat } = await supabase
+          .from("categories")
+          .select("id")
+          .eq("slug", catSlug)
+          .maybeSingle();
+
+        finalCategoryId = foundCat?.id || null;
+      }
+
       // 1. Update artwork record
       const { error: updateErr } = await supabase
         .from("artworks")
         .update({
           title: title.trim(),
           slug: slug.trim() || slugify(title),
-          category_id: categoryId || null,
+          category_id: finalCategoryId,
           short_description: shortDescription.trim() || null,
           description: description.trim() || null,
           main_image_url: mainImageUrl,
@@ -168,8 +182,12 @@ export default function EditArtworkPage() {
       router.push("/admin/artworks");
       router.refresh();
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Failed to update artwork";
-      error(msg);
+      console.error("Update artwork error:", err);
+      const postgrestErr = err as { message?: string; details?: string; hint?: string };
+      const msg =
+        postgrestErr?.message ||
+        (err instanceof Error ? err.message : "Failed to update artwork");
+      error(postgrestErr?.details ? `${msg} (${postgrestErr.details})` : msg);
     } finally {
       setSubmitting(false);
     }
