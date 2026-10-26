@@ -48,18 +48,37 @@ export default function NewArtworkPage() {
         if (catErr) throw catErr;
         let cats = (data as Category[]) || [];
         if (cats.length === 0) {
-          cats = DEFAULT_CATEGORY_SEEDS.map((c, i) => ({
-            id: `cat-${c.slug}`,
+          // Auto-seed default categories into Supabase so they get proper database UUIDs
+          const seedPayload = DEFAULT_CATEGORY_SEEDS.map((c, i) => ({
             name: c.name || "",
             slug: c.slug || "",
-            description: null,
+            description: `Studio artworks for ${c.name}.`,
             cover_image_url: c.cover_image_url || null,
-            cover_image_storage_path: null,
             sort_order: c.sort_order || i + 1,
             is_active: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
           }));
+
+          const { data: inserted, error: seedErr } = await supabase
+            .from("categories")
+            .insert(seedPayload)
+            .select();
+
+          if (!seedErr && inserted && inserted.length > 0) {
+            cats = inserted as Category[];
+          } else {
+            cats = DEFAULT_CATEGORY_SEEDS.map((c, i) => ({
+              id: `cat-${c.slug}`,
+              name: c.name || "",
+              slug: c.slug || "",
+              description: null,
+              cover_image_url: c.cover_image_url || null,
+              cover_image_storage_path: null,
+              sort_order: c.sort_order || i + 1,
+              is_active: true,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            }));
+          }
         }
         setCategories(cats);
         if (cats.length > 0) {
@@ -126,13 +145,44 @@ export default function NewArtworkPage() {
         .map((t) => t.trim())
         .filter((t) => t.length > 0);
 
+      // Validate or resolve category UUID
+      let finalCategoryId: string | null = categoryId;
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      if (finalCategoryId && !uuidRegex.test(finalCategoryId)) {
+        const catSlug = finalCategoryId.replace(/^cat-/, "");
+        const { data: foundCat } = await supabase
+          .from("categories")
+          .select("id")
+          .eq("slug", catSlug)
+          .maybeSingle();
+
+        if (foundCat?.id) {
+          finalCategoryId = foundCat.id;
+        } else {
+          // Insert category first to obtain a valid UUID
+          const matched = DEFAULT_CATEGORY_SEEDS.find((c) => c.slug === catSlug);
+          const { data: createdCat } = await supabase
+            .from("categories")
+            .insert({
+              name: matched?.name || catSlug,
+              slug: catSlug,
+              sort_order: matched?.sort_order || 1,
+              is_active: true,
+            })
+            .select("id")
+            .single();
+
+          finalCategoryId = createdCat?.id || null;
+        }
+      }
+
       // 1. Insert artwork record
       const { data: insertedArt, error: artErr } = await supabase
         .from("artworks")
         .insert({
           title: title.trim(),
           slug: slug.trim() || slugify(title),
-          category_id: categoryId,
+          category_id: finalCategoryId,
           short_description: shortDescription.trim() || null,
           description: description.trim() || null,
           main_image_url: mainImageUrl,
