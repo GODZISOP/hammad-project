@@ -125,7 +125,7 @@ export function Navbar({ settings, categories = [] }: NavbarProps) {
         <div className="fixed inset-0 z-30 md:hidden flex flex-col justify-between bg-[#090a0f]/98 backdrop-blur-2xl p-6 pt-24 animate-in fade-in">
           <div className="space-y-6">
             <div className="text-[10px] font-mono uppercase tracking-widest text-[#ff4655] px-2 font-bold">
-              // TACTICAL SYSTEM NAV
+              {"// TACTICAL SYSTEM NAV"}
             </div>
 
             <nav className="flex flex-col space-y-2">

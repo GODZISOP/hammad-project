@@ -50,7 +50,7 @@ export function CategoryCard({
         <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/10 text-white font-mono text-[10px] font-bold">
             <span className="text-[#ff4655]">#{formattedIndex}</span>
-            <span>// {artworkCount} ARTWORKS</span>
+            <span>{"//"} {artworkCount} ARTWORKS</span>
           </div>
 
           <div className="w-8 h-8 chamfer-btn bg-[#ff4655] text-white flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors shadow-md">

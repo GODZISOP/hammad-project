@@ -106,7 +106,7 @@ export function HomeHero({ settings, featuredArtwork }: HomeHeroProps) {
             <div className="relative chamfer-card p-2.5 bg-[#12141e] border-2 border-[#ff4655]/40 shadow-2xl">
               {/* Tactical Corner Crosshairs */}
               <div className="absolute top-2 left-2 z-20 text-[9px] font-mono text-[#ff4655] font-bold bg-black/80 px-2 py-0.5 border border-[#ff4655]/30">
-                // TARGET_LOCK: {featuredArtwork?.category?.name || "SIGNATURE"}
+                {"// TARGET_LOCK: "}{featuredArtwork?.category?.name || "SIGNATURE"}
               </div>
 
               <div className="relative aspect-[4/5] rounded overflow-hidden bg-black">

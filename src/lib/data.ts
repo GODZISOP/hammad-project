@@ -46,7 +46,7 @@ export async function getActiveCategories(): Promise<Category[]> {
       }));
     }
 
-    return data.map((cat: any) => ({
+    return (data as (Category & { artworks?: { count?: number }[] })[]).map((cat) => ({
       ...cat,
       artworks_count: cat.artworks?.[0]?.count || 0,
     })) as Category[];
