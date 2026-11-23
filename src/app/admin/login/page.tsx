@@ -3,8 +3,9 @@
 import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
-import { Sparkles, Lock, Mail, Loader2, AlertCircle, ArrowLeft } from "lucide-react";
+import { Lock, Mail, Loader2, AlertCircle, ArrowLeft } from "lucide-react";
 
 function LoginForm() {
   const router = useRouter();
@@ -74,10 +75,16 @@ function LoginForm() {
     <div className="w-full max-w-md p-8 rounded-2xl bg-zinc-900/90 border border-zinc-800 backdrop-blur-2xl shadow-2xl space-y-6">
       {/* Brand Header */}
       <div className="text-center space-y-2">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-600/20 text-blue-400 border border-blue-500/30 shadow-lg shadow-blue-500/10 mb-2">
-          <Sparkles className="w-6 h-6" />
+        <div className="relative inline-flex items-center justify-center w-14 h-14 rounded-2xl overflow-hidden border border-blue-500/30 shadow-lg shadow-blue-500/20 mb-2 bg-[#020c29]">
+          <Image
+            src="/images/crytonix-icon.png"
+            alt="Crytonix Solution"
+            fill
+            sizes="56px"
+            className="object-cover"
+          />
         </div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">Admin Portal</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-white">Crytonix Admin Portal</h1>
         <p className="text-xs text-zinc-400">
           Sign in with your verified Supabase administrative account.
         </p>

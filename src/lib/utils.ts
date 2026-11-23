@@ -41,7 +41,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   site_name: "CRYTONIX SOLUTION",
   site_logo_url: null,
   site_logo_storage_path: null,
-  favicon_url: null,
+  favicon_url: "/images/crytonix-icon.png",
   site_description:
     "Crytonix Solution — Digital concept art & creative studio specializing in original characters, VTuber Live2D, 3D VRChat avatars, and stream broadcast systems.",
   hero_label: "CRYTONIX SOLUTION // CONCEPT ART & VIRTUAL AVATARS",
