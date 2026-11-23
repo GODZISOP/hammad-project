@@ -202,7 +202,7 @@ export default function AdminServicesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2.5">
-            <Briefcase className="w-6 h-6 text-purple-400" />
+            <Briefcase className="w-6 h-6 text-blue-400" />
             <span>Creative Services</span>
           </h1>
           <p className="text-xs text-zinc-400 mt-1">
@@ -212,7 +212,7 @@ export default function AdminServicesPage() {
 
         <button
           onClick={openAddModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/25 transition-all self-start sm:self-auto"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/25 transition-all self-start sm:self-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Add Service</span>
@@ -223,7 +223,7 @@ export default function AdminServicesPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {loading ? (
           <div className="col-span-full p-16 text-center text-zinc-500 flex flex-col items-center gap-3">
-            <Loader2 className="w-6 h-6 animate-spin text-purple-400" />
+            <Loader2 className="w-6 h-6 animate-spin text-blue-400" />
             <span className="text-xs">Loading services...</span>
           </div>
         ) : services.length === 0 ? (
@@ -234,11 +234,11 @@ export default function AdminServicesPage() {
           services.map((svc) => (
             <div
               key={svc.id}
-              className="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/60 flex flex-col justify-between space-y-4 hover:border-purple-500/30 transition-all"
+              className="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/60 flex flex-col justify-between space-y-4 hover:border-blue-500/30 transition-all"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="p-2 rounded-xl bg-purple-950/60 border border-purple-500/20 text-purple-400">
+                  <div className="p-2 rounded-xl bg-blue-950/60 border border-blue-500/20 text-blue-400">
                     <Sparkles className="w-4 h-4" />
                   </div>
 
@@ -322,7 +322,7 @@ export default function AdminServicesPage() {
                   value={title}
                   onChange={(e) => handleTitleChange(e.target.value)}
                   placeholder="e.g. VTuber Models & Rigging"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -334,7 +334,7 @@ export default function AdminServicesPage() {
                   value={slug}
                   onChange={(e) => setSlug(slugify(e.target.value))}
                   placeholder="e.g. vtuber-models"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -345,7 +345,7 @@ export default function AdminServicesPage() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Deliverables, turnaround time, package breakdown..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500 resize-none"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 resize-none"
                 />
               </div>
 
@@ -354,7 +354,7 @@ export default function AdminServicesPage() {
                 <select
                   value={icon}
                   onChange={(e) => setIcon(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 focus:outline-none focus:border-blue-500"
                 >
                   {AVAILABLE_ICONS.map((ic) => (
                     <option key={ic} value={ic}>
@@ -381,7 +381,7 @@ export default function AdminServicesPage() {
                     type="number"
                     value={sortOrder}
                     onChange={(e) => setSortOrder(parseInt(e.target.value) || 0)}
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
@@ -391,7 +391,7 @@ export default function AdminServicesPage() {
                     id="svcActive"
                     checked={isActive}
                     onChange={(e) => setIsActive(e.target.checked)}
-                    className="w-4 h-4 rounded text-purple-600 bg-zinc-950 border-zinc-800"
+                    className="w-4 h-4 rounded text-blue-600 bg-zinc-950 border-zinc-800"
                   />
                   <label htmlFor="svcActive" className="text-xs font-medium text-zinc-300 cursor-pointer">
                     Active & Visible
@@ -410,7 +410,7 @@ export default function AdminServicesPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex items-center gap-2 px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/25 transition-all disabled:opacity-50"
+                  className="flex items-center gap-2 px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/25 transition-all disabled:opacity-50"
                 >
                   {submitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                   <span>{editingService ? "Save Changes" : "Create Service"}</span>

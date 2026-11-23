@@ -92,7 +92,7 @@ export function ArtworkDetailView({
                     onClick={() => setActiveImageIndex(idx)}
                     className={`relative w-20 h-20 rounded-xl overflow-hidden shrink-0 border-2 transition-all ${
                       idx === activeImageIndex
-                        ? "border-purple-500 scale-105 shadow-lg shadow-purple-500/20"
+                        ? "border-blue-500 scale-105 shadow-lg shadow-blue-500/20"
                         : "border-zinc-800 opacity-60 hover:opacity-100"
                     }`}
                   >
@@ -117,7 +117,7 @@ export function ArtworkDetailView({
             {artwork.category && (
               <Link
                 href={`/category/${artwork.category.slug}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-mono font-medium hover:bg-purple-900/60 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-300 text-xs font-mono font-medium hover:bg-blue-900/60 transition-colors"
               >
                 <FolderTree className="w-3.5 h-3.5" />
                 <span>{artwork.category.name}</span>
@@ -138,7 +138,7 @@ export function ArtworkDetailView({
                   href={artwork.external_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-purple-400 hover:text-purple-300 transition-colors"
+                  className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors"
                 >
                   <span>External Source</span>
                   <ExternalLink className="w-3 h-3" />
@@ -157,7 +157,7 @@ export function ArtworkDetailView({
           {/* Full Creative Story Description */}
           {artwork.description && (
             <div className="p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800 space-y-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-purple-400 block font-semibold">
+              <span className="text-xs font-mono uppercase tracking-wider text-blue-400 block font-semibold">
                 Project Notes & Concept
               </span>
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed whitespace-pre-wrap">
@@ -184,7 +184,7 @@ export function ArtworkDetailView({
           )}
 
           {/* Commission Call To Action Box */}
-          <div className="p-6 rounded-2xl bg-gradient-to-tr from-purple-950/40 via-zinc-900 to-zinc-900 border border-purple-500/30 space-y-4 shadow-xl">
+          <div className="p-6 rounded-2xl bg-gradient-to-tr from-blue-950/40 via-zinc-900 to-zinc-900 border border-blue-500/30 space-y-4 shadow-xl">
             <div className="space-y-1">
               <h3 className="text-base font-bold text-white">Want something similar?</h3>
               <p className="text-xs text-zinc-400">
@@ -196,7 +196,7 @@ export function ArtworkDetailView({
               href={`/contact?project=${encodeURIComponent(artwork.title)}&type=${encodeURIComponent(
                 artwork.category?.name || ""
               )}`}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs shadow-lg shadow-purple-600/25 transition-all"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-lg shadow-blue-600/25 transition-all"
             >
               <span>Start a Project</span>
               <ArrowRight className="w-4 h-4" />
@@ -215,7 +215,7 @@ export function ArtworkDetailView({
             {artwork.category && (
               <Link
                 href={`/category/${artwork.category.slug}`}
-                className="text-xs text-purple-400 hover:underline font-medium"
+                className="text-xs text-blue-400 hover:underline font-medium"
               >
                 View all in {artwork.category.name}
               </Link>

@@ -98,7 +98,7 @@ function FormInternal({ categories, settings }: ContactFormProps) {
           Inquiry Received!
         </h3>
         <p className="text-sm text-zinc-300 max-w-md mx-auto leading-relaxed">
-          Thank you for reaching out, <span className="font-semibold text-white">{name}</span>. We typically review new commission requests within 24–48 hours and will respond to <span className="font-mono text-purple-400">{email}</span>.
+          Thank you for reaching out, <span className="font-semibold text-white">{name}</span>. We typically review new commission requests within 24â€“48 hours and will respond to <span className="font-mono text-blue-400">{email}</span>.
         </p>
         <div className="pt-4">
           <button
@@ -154,7 +154,7 @@ function FormInternal({ categories, settings }: ContactFormProps) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Jane Doe"
-            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500 transition-all"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 transition-all"
           />
         </div>
 
@@ -166,7 +166,7 @@ function FormInternal({ categories, settings }: ContactFormProps) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="jane@creator.com"
-            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500 transition-all"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 transition-all"
           />
         </div>
       </div>
@@ -181,7 +181,7 @@ function FormInternal({ categories, settings }: ContactFormProps) {
             value={discordUsername}
             onChange={(e) => setDiscordUsername(e.target.value)}
             placeholder="username#0000"
-            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500 transition-all"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 transition-all"
           />
         </div>
 
@@ -192,7 +192,7 @@ function FormInternal({ categories, settings }: ContactFormProps) {
           <select
             value={projectType}
             onChange={(e) => setProjectType(e.target.value)}
-            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-200 focus:outline-none focus:border-purple-500 transition-all"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-200 focus:outline-none focus:border-blue-500 transition-all"
           >
             <option value="">Select project type...</option>
             {categories.map((c) => (
@@ -220,7 +220,7 @@ function FormInternal({ categories, settings }: ContactFormProps) {
               onClick={() => setBudget(opt)}
               className={`py-2 px-3 rounded-xl text-xs font-medium border text-center transition-all ${
                 budget === opt
-                  ? "bg-purple-600/20 border-purple-500 text-purple-300 font-semibold shadow-md shadow-purple-600/10"
+                  ? "bg-blue-600/20 border-blue-500 text-blue-300 font-semibold shadow-md shadow-blue-600/10"
                   : "bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700"
               }`}
             >
@@ -241,14 +241,14 @@ function FormInternal({ categories, settings }: ContactFormProps) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Include details about character traits, references, deadlines, and where these assets will be featured..."
-          className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500 transition-all resize-y"
+          className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 transition-all resize-y"
         />
       </div>
 
       <button
         type="submit"
         disabled={submitting}
-        className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold text-sm shadow-xl shadow-purple-600/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 active:scale-98"
+        className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-blue-600/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 active:scale-98"
       >
         {submitting ? (
           <>

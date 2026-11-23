@@ -267,7 +267,7 @@ export default function NewArtworkPage() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Main Details Card */}
         <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-4">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
             Basic Information
           </h2>
 
@@ -280,7 +280,7 @@ export default function NewArtworkPage() {
                 value={title}
                 onChange={(e) => handleTitleChange(e.target.value)}
                 placeholder="e.g. Aetheria: Celestial Sorceress"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -292,7 +292,7 @@ export default function NewArtworkPage() {
                 value={slug}
                 onChange={(e) => setSlug(slugify(e.target.value))}
                 placeholder="e.g. aetheria-celestial-sorceress"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -304,7 +304,7 @@ export default function NewArtworkPage() {
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
                 disabled={loadingCats}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-200 focus:outline-none focus:border-purple-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-200 focus:outline-none focus:border-blue-500"
               >
                 {categories.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -323,7 +323,7 @@ export default function NewArtworkPage() {
                 value={tagsInput}
                 onChange={(e) => setTagsInput(e.target.value)}
                 placeholder="Character, Fantasy, Digital Painting, 3D"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -335,7 +335,7 @@ export default function NewArtworkPage() {
               value={shortDescription}
               onChange={(e) => setShortDescription(e.target.value)}
               placeholder="One-sentence hook displayed in cards and previews"
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -346,14 +346,14 @@ export default function NewArtworkPage() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Tell the creative story behind this piece, software tools used (Blender, Photoshop, Live2D), and project background..."
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500 resize-y"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 resize-y"
             />
           </div>
         </div>
 
         {/* Media Card: Cover & Gallery */}
         <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-6">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
             Media & Images
           </h2>
 
@@ -387,7 +387,7 @@ export default function NewArtworkPage() {
 
         {/* Visibility & Organization */}
         <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-4">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
             Visibility & Options
           </h2>
 
@@ -398,7 +398,7 @@ export default function NewArtworkPage() {
                 id="isFeatured"
                 checked={isFeatured}
                 onChange={(e) => setIsFeatured(e.target.checked)}
-                className="w-4 h-4 rounded text-purple-600 bg-zinc-900 border-zinc-700"
+                className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
               />
               <label htmlFor="isFeatured" className="text-xs font-medium text-zinc-200 cursor-pointer">
                 Feature on Homepage
@@ -411,7 +411,7 @@ export default function NewArtworkPage() {
                 id="isPublished"
                 checked={isPublished}
                 onChange={(e) => setIsPublished(e.target.checked)}
-                className="w-4 h-4 rounded text-purple-600 bg-zinc-900 border-zinc-700"
+                className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
               />
               <label htmlFor="isPublished" className="text-xs font-medium text-zinc-200 cursor-pointer">
                 Publish Immediately
@@ -438,14 +438,14 @@ export default function NewArtworkPage() {
               value={externalUrl}
               onChange={(e) => setExternalUrl(e.target.value)}
               placeholder="https://artstation.com/artwork/..."
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
 
         {/* SEO Meta */}
         <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-4">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
             SEO & Social Meta
           </h2>
 
@@ -457,7 +457,7 @@ export default function NewArtworkPage() {
                 value={seoTitle}
                 onChange={(e) => setSeoTitle(e.target.value)}
                 placeholder="Artwork Title // Character Design"
-                className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -468,7 +468,7 @@ export default function NewArtworkPage() {
                 value={seoDescription}
                 onChange={(e) => setSeoDescription(e.target.value)}
                 placeholder="Search engine snippet text"
-                className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -485,7 +485,7 @@ export default function NewArtworkPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/25 transition-all disabled:opacity-50"
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/25 transition-all disabled:opacity-50"
           >
             {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
             <span>Publish Artwork</span>

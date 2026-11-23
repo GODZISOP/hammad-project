@@ -1,26 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Loader2, Trash2, ExternalLink } from "lucide-react";
+import { ArrowLeft, Loader2, Sparkles, Plus, Image as ImageIcon } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-import { slugify } from "@/lib/utils";
+import { slugify, DEFAULT_CATEGORY_SEEDS } from "@/lib/utils";
 import { ImageUploader } from "@/components/admin/ImageUploader";
 import { MultiImageUploader, type GalleryImageItem } from "@/components/admin/MultiImageUploader";
 import { useToast } from "@/components/shared/Toast";
-import type { Category, Artwork } from "@/types/database";
+import type { Category } from "@/types/database";
 
-export default function EditArtworkPage() {
+export default function NewArtworkPage() {
   const router = useRouter();
-  const params = useParams();
-  const artworkId = params.id as string;
-
   const { success, error } = useToast();
   const supabase = createClient();
 
-  const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [loadingCats, setLoadingCats] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
   // Form states
@@ -41,62 +38,85 @@ export default function EditArtworkPage() {
   const [seoDescription, setSeoDescription] = useState("");
 
   useEffect(() => {
-    async function fetchArtworkAndCats() {
+    async function fetchCats() {
       try {
-        setLoading(true);
-
-        // Fetch categories
-        const { data: catData } = await supabase
+        const { data, error: catErr } = await supabase
           .from("categories")
           .select("*")
           .order("sort_order", { ascending: true });
 
-        setCategories((catData as Category[]) || []);
+        if (catErr) throw catErr;
+        let cats = (data as Category[]) || [];
+        if (cats.length === 0) {
+          // Auto-seed default categories into Supabase so they get proper database UUIDs
+          const seedPayload = DEFAULT_CATEGORY_SEEDS.map((c, i) => ({
+            name: c.name || "",
+            slug: c.slug || "",
+            description: `Studio artworks for ${c.name}.`,
+            cover_image_url: c.cover_image_url || null,
+            sort_order: c.sort_order || i + 1,
+            is_active: true,
+          }));
 
-        // Fetch artwork with images
-        const { data: art, error: artErr } = await supabase
-          .from("artworks")
-          .select("*, artwork_images(*)")
-          .eq("id", artworkId)
-          .single();
+          const { data: inserted, error: seedErr } = await supabase
+            .from("categories")
+            .insert(seedPayload)
+            .select();
 
-        if (artErr) throw artErr;
-
-        if (art) {
-          setTitle(art.title);
-          setSlug(art.slug);
-          setCategoryId(art.category_id || "");
-          setShortDescription(art.short_description || "");
-          setDescription(art.description || "");
-          setTagsInput(art.tags ? art.tags.join(", ") : "");
-          setMainImageUrl(art.main_image_url);
-          setMainStoragePath(art.main_storage_path || null);
-          setIsFeatured(art.is_featured);
-          setIsPublished(art.is_published);
-          setSortOrder(art.sort_order || 0);
-          setExternalUrl(art.external_url || "");
-          setSeoTitle(art.seo_title || "");
-          setSeoDescription(art.seo_description || "");
-
-          if (art.artwork_images && art.artwork_images.length > 0) {
-            const sorted = [...art.artwork_images].sort(
-              (a, b) => a.sort_order - b.sort_order
-            );
-            setGalleryImages(sorted);
+          if (!seedErr && inserted && inserted.length > 0) {
+            cats = inserted as Category[];
+          } else {
+            cats = DEFAULT_CATEGORY_SEEDS.map((c, i) => ({
+              id: `cat-${c.slug}`,
+              name: c.name || "",
+              slug: c.slug || "",
+              description: null,
+              cover_image_url: c.cover_image_url || null,
+              cover_image_storage_path: null,
+              sort_order: c.sort_order || i + 1,
+              is_active: true,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            }));
           }
         }
+        setCategories(cats);
+        if (cats.length > 0) {
+          setCategoryId(cats[0].id);
+        }
       } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : "Failed to load artwork";
-        error(msg);
+        console.warn("Failed to load categories, using defaults:", err);
+        const fallbackCats = DEFAULT_CATEGORY_SEEDS.map((c, i) => ({
+          id: `cat-${c.slug}`,
+          name: c.name || "",
+          slug: c.slug || "",
+          description: null,
+          cover_image_url: c.cover_image_url || null,
+          cover_image_storage_path: null,
+          sort_order: c.sort_order || i + 1,
+          is_active: true,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        }));
+        setCategories(fallbackCats);
+        if (fallbackCats.length > 0) {
+          setCategoryId(fallbackCats[0].id);
+        }
       } finally {
-        setLoading(false);
+        setLoadingCats(false);
       }
     }
 
-    if (artworkId) {
-      fetchArtworkAndCats();
+    fetchCats();
+  }, []);
+
+  const handleTitleChange = (val: string) => {
+    setTitle(val);
+    setSlug(slugify(val));
+    if (!seoTitle) {
+      setSeoTitle(val);
     }
-  }, [artworkId]);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,9 +131,15 @@ export default function EditArtworkPage() {
       return;
     }
 
+    if (!categoryId) {
+      error("Please select a category");
+      return;
+    }
+
     try {
       setSubmitting(true);
 
+      // Parse tags
       const tagsArray = tagsInput
         .split(",")
         .map((t) => t.trim())
@@ -130,15 +156,44 @@ export default function EditArtworkPage() {
           .eq("slug", catSlug)
           .maybeSingle();
 
-        finalCategoryId = foundCat?.id || null;
+        if (foundCat?.id) {
+          finalCategoryId = foundCat.id;
+        } else {
+          // Insert category first to obtain a valid UUID
+          const matched = DEFAULT_CATEGORY_SEEDS.find((c) => c.slug === catSlug);
+          const { data: createdCat } = await supabase
+            .from("categories")
+            .insert({
+              name: matched?.name || catSlug,
+              slug: catSlug,
+              sort_order: matched?.sort_order || 1,
+              is_active: true,
+            })
+            .select("id")
+            .single();
+
+          finalCategoryId = createdCat?.id || null;
+        }
       }
 
-      // 1. Update artwork record
-      const { error: updateErr } = await supabase
+      // 1. Ensure slug is unique
+      let candidateSlug = slug.trim() || slugify(title);
+      const { data: existingArt } = await supabase
         .from("artworks")
-        .update({
+        .select("id")
+        .eq("slug", candidateSlug)
+        .maybeSingle();
+
+      if (existingArt) {
+        candidateSlug = `${candidateSlug}-${Math.floor(100 + Math.random() * 900)}`;
+      }
+
+      // 2. Insert artwork record
+      const { data: insertedArt, error: artErr } = await supabase
+        .from("artworks")
+        .insert({
           title: title.trim(),
-          slug: slug.trim() || slugify(title),
+          slug: candidateSlug,
           category_id: finalCategoryId,
           short_description: shortDescription.trim() || null,
           description: description.trim() || null,
@@ -150,57 +205,46 @@ export default function EditArtworkPage() {
           is_published: isPublished,
           sort_order: Number(sortOrder) || 0,
           seo_title: seoTitle.trim() || null,
-          seo_description: seoDescription.trim() || null,
+          seo_description: seoDescription.trim() || shortDescription.trim() || null,
         })
-        .eq("id", artworkId);
+        .select()
+        .single();
 
-      if (updateErr) throw updateErr;
+      if (artErr) throw artErr;
 
-      // 2. Synchronize gallery images
-      // Delete existing artwork_images for this artwork and re-insert current list with clean sort_order
-      await supabase.from("artwork_images").delete().eq("artwork_id", artworkId);
-
-      if (galleryImages.length > 0) {
+      // 2. Insert additional gallery images if any
+      if (galleryImages.length > 0 && insertedArt) {
         const imagesPayload = galleryImages.map((g, idx) => ({
-          artwork_id: artworkId,
+          artwork_id: insertedArt.id,
           image_url: g.image_url,
           storage_path: g.storage_path || null,
           caption: g.caption || null,
           sort_order: idx + 1,
         }));
 
-        const { error: insErr } = await supabase
+        const { error: imgErr } = await supabase
           .from("artwork_images")
           .insert(imagesPayload);
 
-        if (insErr) {
-          console.warn("Gallery sync warning:", insErr);
+        if (imgErr) {
+          console.warn("Artwork images insert warning:", imgErr);
         }
       }
 
-      success(`Artwork "${title}" updated successfully!`);
+      success(`Artwork "${title}" published successfully!`);
       router.push("/admin/artworks");
       router.refresh();
     } catch (err: unknown) {
-      console.error("Update artwork error:", err);
+      console.error("Create artwork error:", err);
       const postgrestErr = err as { message?: string; details?: string; hint?: string };
       const msg =
         postgrestErr?.message ||
-        (err instanceof Error ? err.message : "Failed to update artwork");
+        (err instanceof Error ? err.message : "Failed to create artwork");
       error(postgrestErr?.details ? `${msg} (${postgrestErr.details})` : msg);
     } finally {
       setSubmitting(false);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="p-16 text-center text-zinc-500 flex flex-col items-center gap-3">
-        <Loader2 className="w-8 h-8 animate-spin text-purple-400" />
-        <span className="text-sm">Loading artwork details...</span>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
@@ -214,25 +258,16 @@ export default function EditArtworkPage() {
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <h1 className="text-xl font-bold text-white tracking-tight">Edit Artwork</h1>
-            <p className="text-xs text-zinc-400">Update content, manage gallery angles, or tweak SEO</p>
+            <h1 className="text-xl font-bold text-white tracking-tight">Upload New Artwork</h1>
+            <p className="text-xs text-zinc-400">Fill in details and upload high-res images</p>
           </div>
         </div>
-
-        <Link
-          href={`/artwork/${slug}`}
-          target="_blank"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-300 hover:text-white hover:border-zinc-700 transition-colors"
-        >
-          <span>View Public Page</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </Link>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Main Details Card */}
         <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-4">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
             Basic Information
           </h2>
 
@@ -243,8 +278,9 @@ export default function EditArtworkPage() {
                 type="text"
                 required
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                onChange={(e) => handleTitleChange(e.target.value)}
+                placeholder="e.g. Aetheria: Celestial Sorceress"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -255,7 +291,8 @@ export default function EditArtworkPage() {
                 required
                 value={slug}
                 onChange={(e) => setSlug(slugify(e.target.value))}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 focus:outline-none focus:border-purple-500"
+                placeholder="e.g. aetheria-celestial-sorceress"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -266,9 +303,9 @@ export default function EditArtworkPage() {
               <select
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-200 focus:outline-none focus:border-purple-500"
+                disabled={loadingCats}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-200 focus:outline-none focus:border-blue-500"
               >
-                <option value="">Select Category...</option>
                 {categories.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
@@ -286,7 +323,7 @@ export default function EditArtworkPage() {
                 value={tagsInput}
                 onChange={(e) => setTagsInput(e.target.value)}
                 placeholder="Character, Fantasy, Digital Painting, 3D"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -297,7 +334,8 @@ export default function EditArtworkPage() {
               type="text"
               value={shortDescription}
               onChange={(e) => setShortDescription(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+              placeholder="One-sentence hook displayed in cards and previews"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -307,17 +345,19 @@ export default function EditArtworkPage() {
               rows={4}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500 resize-y"
+              placeholder="Tell the creative story behind this piece, software tools used (Blender, Photoshop, Live2D), and project background..."
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 resize-y"
             />
           </div>
         </div>
 
-        {/* Media Card */}
+        {/* Media Card: Cover & Gallery */}
         <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-6">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
             Media & Images
           </h2>
 
+          {/* Main Cover Image */}
           <ImageUploader
             bucket="artworks"
             folder="covers"
@@ -331,12 +371,13 @@ export default function EditArtworkPage() {
               setMainStoragePath(null);
             }}
             label="Primary Cover Image *"
-            description="Replace cover image in Supabase storage"
+            description="High-resolution image shown in gallery cards and hero view"
             aspectRatio="portrait"
           />
 
           <hr className="border-zinc-800/80" />
 
+          {/* Additional Gallery Multi-Images */}
           <MultiImageUploader
             images={galleryImages}
             onChange={(imgs) => setGalleryImages(imgs)}
@@ -344,9 +385,9 @@ export default function EditArtworkPage() {
           />
         </div>
 
-        {/* Visibility */}
+        {/* Visibility & Organization */}
         <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-4">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
             Visibility & Options
           </h2>
 
@@ -357,7 +398,7 @@ export default function EditArtworkPage() {
                 id="isFeatured"
                 checked={isFeatured}
                 onChange={(e) => setIsFeatured(e.target.checked)}
-                className="w-4 h-4 rounded text-purple-600 bg-zinc-900 border-zinc-700"
+                className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
               />
               <label htmlFor="isFeatured" className="text-xs font-medium text-zinc-200 cursor-pointer">
                 Feature on Homepage
@@ -370,10 +411,10 @@ export default function EditArtworkPage() {
                 id="isPublished"
                 checked={isPublished}
                 onChange={(e) => setIsPublished(e.target.checked)}
-                className="w-4 h-4 rounded text-purple-600 bg-zinc-900 border-zinc-700"
+                className="w-4 h-4 rounded text-blue-600 bg-zinc-900 border-zinc-700"
               />
               <label htmlFor="isPublished" className="text-xs font-medium text-zinc-200 cursor-pointer">
-                Published
+                Publish Immediately
               </label>
             </div>
 
@@ -389,19 +430,22 @@ export default function EditArtworkPage() {
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-zinc-300">External Link</label>
+            <label className="block text-xs font-medium text-zinc-300">
+              External Link (ArtStation, Behance, YouTube speedpaint)
+            </label>
             <input
               type="url"
               value={externalUrl}
               onChange={(e) => setExternalUrl(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+              placeholder="https://artstation.com/artwork/..."
+              className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
 
         {/* SEO Meta */}
         <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-4">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
             SEO & Social Meta
           </h2>
 
@@ -412,7 +456,8 @@ export default function EditArtworkPage() {
                 type="text"
                 value={seoTitle}
                 onChange={(e) => setSeoTitle(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                placeholder="Artwork Title // Character Design"
+                className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -422,7 +467,8 @@ export default function EditArtworkPage() {
                 type="text"
                 value={seoDescription}
                 onChange={(e) => setSeoDescription(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                placeholder="Search engine snippet text"
+                className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -439,10 +485,10 @@ export default function EditArtworkPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/25 transition-all disabled:opacity-50"
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/25 transition-all disabled:opacity-50"
           >
             {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
-            <span>Save Changes</span>
+            <span>Publish Artwork</span>
           </button>
         </div>
       </form>

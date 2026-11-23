@@ -281,7 +281,7 @@ export default function AdminCategoriesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2.5">
-            <FolderTree className="w-6 h-6 text-purple-400" />
+            <FolderTree className="w-6 h-6 text-blue-400" />
             <span>Category Management</span>
           </h1>
           <p className="text-xs text-zinc-400 mt-1">
@@ -297,16 +297,16 @@ export default function AdminCategoriesPage() {
             title="Import all 12 preset studio categories"
           >
             {seeding ? (
-              <Loader2 className="w-4 h-4 animate-spin text-[#ff4655]" />
+              <Loader2 className="w-4 h-4 animate-spin text-[#2563eb]" />
             ) : (
-              <Sparkles className="w-4 h-4 text-[#ff4655]" />
+              <Sparkles className="w-4 h-4 text-[#2563eb]" />
             )}
             <span>{seeding ? "Importing..." : "Sync 12 Presets"}</span>
           </button>
 
           <button
             onClick={openAddModal}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#ff4655] hover:bg-[#ff5a68] text-white text-xs font-semibold shadow-lg shadow-[#ff4655]/25 transition-all"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#2563eb] hover:bg-[#3b82f6] text-white text-xs font-semibold shadow-lg shadow-[#2563eb]/25 transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Add New Category</span>
@@ -318,7 +318,7 @@ export default function AdminCategoriesPage() {
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-zinc-500 flex flex-col items-center gap-3">
-            <Loader2 className="w-6 h-6 animate-spin text-[#ff4655]" />
+            <Loader2 className="w-6 h-6 animate-spin text-[#2563eb]" />
             <span className="text-xs">Loading categories...</span>
           </div>
         ) : categories.length === 0 ? (
@@ -327,7 +327,7 @@ export default function AdminCategoriesPage() {
             <button
               onClick={seedPresetCategories}
               disabled={seeding}
-              className="px-4 py-2.5 bg-[#ff4655] hover:bg-[#ff5a68] text-white text-xs font-bold uppercase rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-[#ff4655]/25"
+              className="px-4 py-2.5 bg-[#2563eb] hover:bg-[#3b82f6] text-white text-xs font-bold uppercase rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-[#2563eb]/25"
             >
               {seeding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               <span>Import All 12 Default Categories (OC, 3D, VTuber, etc.)</span>
@@ -371,7 +371,7 @@ export default function AdminCategoriesPage() {
                     {/* Name & Slug */}
                     <td className="px-6 py-4">
                       <div className="font-medium text-white">{cat.name}</div>
-                      <div className="text-xs font-mono text-purple-400">/{cat.slug}</div>
+                      <div className="text-xs font-mono text-blue-400">/{cat.slug}</div>
                       {cat.description && (
                         <div className="text-xs text-zinc-500 mt-0.5 line-clamp-1 max-w-xs">
                           {cat.description}
@@ -467,7 +467,7 @@ export default function AdminCategoriesPage() {
                   value={name}
                   onChange={(e) => handleNameChange(e.target.value)}
                   placeholder="e.g. 3D Character"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -479,7 +479,7 @@ export default function AdminCategoriesPage() {
                   value={slug}
                   onChange={(e) => setSlug(slugify(e.target.value))}
                   placeholder="e.g. 3d-character"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 font-mono placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 font-mono placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -490,7 +490,7 @@ export default function AdminCategoriesPage() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Short creative summary for category page header"
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500 resize-none"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 resize-none"
                 />
               </div>
 
@@ -513,7 +513,7 @@ export default function AdminCategoriesPage() {
                     type="number"
                     value={sortOrder}
                     onChange={(e) => setSortOrder(parseInt(e.target.value) || 0)}
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
@@ -523,7 +523,7 @@ export default function AdminCategoriesPage() {
                     id="isActive"
                     checked={isActive}
                     onChange={(e) => setIsActive(e.target.checked)}
-                    className="w-4 h-4 rounded text-purple-600 bg-zinc-950 border-zinc-800 focus:ring-purple-500"
+                    className="w-4 h-4 rounded text-blue-600 bg-zinc-950 border-zinc-800 focus:ring-blue-500"
                   />
                   <label htmlFor="isActive" className="text-xs font-medium text-zinc-300 cursor-pointer">
                     Visible on Public Site
@@ -542,7 +542,7 @@ export default function AdminCategoriesPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex items-center gap-2 px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/25 transition-all disabled:opacity-50"
+                  className="flex items-center gap-2 px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/25 transition-all disabled:opacity-50"
                 >
                   {submitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                   <span>{editingCategory ? "Save Changes" : "Create Category"}</span>
@@ -581,7 +581,7 @@ export default function AdminCategoriesPage() {
                   <select
                     value={targetMoveCategoryId}
                     onChange={(e) => setTargetMoveCategoryId(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 focus:outline-none focus:border-blue-500"
                   >
                     <option value="">Select target category...</option>
                     {categories

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -12,7 +13,6 @@ import {
   Settings,
   ExternalLink,
   LogOut,
-  Sparkles,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
@@ -45,14 +45,20 @@ export function AdminSidebar({ onCloseMobile }: AdminSidebarProps) {
       <div className="space-y-6">
         {/* Brand / Logo */}
         <div className="flex items-center gap-3 px-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-purple-500/20">
-            <Sparkles className="w-5 h-5" />
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-blue-500/30 shadow-lg shadow-blue-500/20 bg-[#020c29]">
+            <Image
+              src="/images/crytonix-icon.png"
+              alt="Crytonix Solution"
+              fill
+              sizes="40px"
+              className="object-cover"
+            />
           </div>
           <div>
             <span className="font-bold tracking-tight text-white block text-sm">
-              STUDIO // ADMIN
+              CRYTONIX // ADMIN
             </span>
-            <span className="text-[11px] font-mono text-purple-400">Creative CMS</span>
+            <span className="text-[11px] font-mono text-blue-400">Creative CMS</span>
           </div>
         </div>
 
@@ -72,13 +78,13 @@ export function AdminSidebar({ onCloseMobile }: AdminSidebarProps) {
                 onClick={onCloseMobile}
                 className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   isActive
-                    ? "bg-purple-600/15 text-purple-300 border border-purple-500/30 shadow-sm"
+                    ? "bg-blue-600/15 text-blue-300 border border-blue-500/30 shadow-sm"
                     : "text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900"
                 }`}
               >
                 <Icon
                   className={`w-4 h-4 transition-colors ${
-                    isActive ? "text-purple-400" : "text-zinc-500"
+                    isActive ? "text-blue-400" : "text-zinc-500"
                   }`}
                 />
                 <span>{item.label}</span>

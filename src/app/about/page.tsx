@@ -36,7 +36,7 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Story (7 cols) */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-mono font-medium">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-300 text-xs font-mono font-medium">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>The Story & Obsession</span>
               </div>
@@ -48,7 +48,7 @@ export default async function AboutPage() {
               <div className="space-y-4 text-base text-zinc-300 leading-relaxed">
                 <p>{settings.about_description}</p>
                 {settings.experience_text && (
-                  <p className="text-sm font-mono text-purple-400 bg-purple-950/30 border border-purple-500/20 p-4 rounded-xl">
+                  <p className="text-sm font-mono text-blue-400 bg-blue-950/30 border border-blue-500/20 p-4 rounded-xl">
                     &ldquo;{settings.experience_text}&rdquo;
                   </p>
                 )}
@@ -99,7 +99,7 @@ export default async function AboutPage() {
           {/* Workflow Values */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-zinc-900">
             <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400">
+              <div className="w-10 h-10 rounded-xl bg-blue-950/60 border border-blue-500/20 flex items-center justify-center text-blue-400">
                 <Heart className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-white">Artistic Integrity</h3>
@@ -109,7 +109,7 @@ export default async function AboutPage() {
             </div>
 
             <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400">
+              <div className="w-10 h-10 rounded-xl bg-blue-950/60 border border-blue-500/20 flex items-center justify-center text-blue-400">
                 <Award className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-white">Production Quality</h3>
@@ -119,7 +119,7 @@ export default async function AboutPage() {
             </div>
 
             <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-950/60 border border-purple-500/20 flex items-center justify-center text-purple-400">
+              <div className="w-10 h-10 rounded-xl bg-blue-950/60 border border-blue-500/20 flex items-center justify-center text-blue-400">
                 <Shield className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-white">Transparent Milestones</h3>
@@ -155,7 +155,7 @@ export default async function AboutPage() {
                     )}
                     <Link
                       href={`/contact?service=${encodeURIComponent(svc.title)}`}
-                      className="inline-flex items-center gap-1.5 text-xs text-purple-400 hover:text-purple-300 font-medium pt-2"
+                      className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 font-medium pt-2"
                     >
                       <span>Inquire Now</span>
                       <ArrowRight className="w-3 h-3" />
@@ -167,7 +167,7 @@ export default async function AboutPage() {
           )}
 
           {/* CTA Banner */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-tr from-purple-950/60 to-zinc-900 border border-purple-500/30 text-center space-y-4">
+          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-tr from-blue-950/60 to-zinc-900 border border-blue-500/30 text-center space-y-4">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
               Ready to bring your characters and brand to life?
             </h2>
@@ -177,7 +177,7 @@ export default async function AboutPage() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs shadow-lg shadow-purple-600/30 transition-all"
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-lg shadow-blue-600/30 transition-all"
               >
                 <span>Get In Touch</span>
                 <ArrowRight className="w-3.5 h-3.5" />

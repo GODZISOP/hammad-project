@@ -125,22 +125,22 @@ export function ImageUploader({
           onClick={() => !isUploading && fileInputRef.current?.click()}
           className={`relative w-full ${aspectClasses} rounded-xl border-2 border-dashed transition-all flex flex-col items-center justify-center p-6 text-center cursor-pointer ${
             isDragOver
-              ? "border-purple-500 bg-purple-950/20"
+              ? "border-blue-500 bg-blue-950/20"
               : "border-zinc-800 hover:border-zinc-700 bg-zinc-950/40 hover:bg-zinc-900/40"
           }`}
         >
           {isUploading ? (
             <div className="flex flex-col items-center gap-2">
-              <Loader2 className="w-8 h-8 text-purple-400 animate-spin" />
+              <Loader2 className="w-8 h-8 text-blue-400 animate-spin" />
               <p className="text-sm text-zinc-400">Uploading image to storage...</p>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2">
-              <div className="p-3 rounded-xl bg-zinc-900 text-zinc-400 border border-zinc-800 group-hover:text-purple-400 transition-colors">
+              <div className="p-3 rounded-xl bg-zinc-900 text-zinc-400 border border-zinc-800 group-hover:text-blue-400 transition-colors">
                 <UploadCloud className="w-6 h-6" />
               </div>
               <div className="text-sm">
-                <span className="font-semibold text-purple-400 hover:text-purple-300">Click to upload</span>{" "}
+                <span className="font-semibold text-blue-400 hover:text-blue-300">Click to upload</span>{" "}
                 <span className="text-zinc-500">or drag and drop</span>
               </div>
               {description && <p className="text-xs text-zinc-500">{description}</p>}

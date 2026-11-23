@@ -96,7 +96,7 @@ export default function AdminSettingsPage() {
   if (loading) {
     return (
       <div className="p-16 text-center text-zinc-500 flex flex-col items-center gap-3">
-        <Loader2 className="w-8 h-8 animate-spin text-purple-400" />
+        <Loader2 className="w-8 h-8 animate-spin text-blue-400" />
         <span className="text-sm">Loading studio settings...</span>
       </div>
     );
@@ -117,7 +117,7 @@ export default function AdminSettingsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2.5">
-            <Settings className="w-6 h-6 text-purple-400" />
+            <Settings className="w-6 h-6 text-blue-400" />
             <span>Website Settings</span>
           </h1>
           <p className="text-xs text-zinc-400 mt-1">
@@ -128,7 +128,7 @@ export default function AdminSettingsPage() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/25 transition-all self-start sm:self-auto disabled:opacity-50"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/25 transition-all self-start sm:self-auto disabled:opacity-50"
         >
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
           <span>Save All Settings</span>
@@ -145,7 +145,7 @@ export default function AdminSettingsPage() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
                 activeTab === tab.id
-                  ? "bg-purple-600/20 text-purple-300 border border-purple-500/30"
+                  ? "bg-blue-600/20 text-blue-300 border border-blue-500/30"
                   : "bg-zinc-900/60 text-zinc-400 hover:text-zinc-200 border border-zinc-800"
               }`}
             >
@@ -160,7 +160,7 @@ export default function AdminSettingsPage() {
         {/* 1. General & Branding */}
         {activeTab === "general" && (
           <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-5 animate-in fade-in">
-            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
               General Identity
             </h2>
 
@@ -171,8 +171,8 @@ export default function AdminSettingsPage() {
                   type="text"
                   value={settings.site_name || ""}
                   onChange={(e) => handleChange("site_name", e.target.value)}
-                  placeholder="LUMINA // Digital Art Studio"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  placeholder="Crytonix Solution // Digital Art Studio"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -183,7 +183,7 @@ export default function AdminSettingsPage() {
                   value={settings.site_description || ""}
                   onChange={(e) => handleChange("site_description", e.target.value)}
                   placeholder="High-end creative portfolio..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function AdminSettingsPage() {
                     rows={3}
                     value={settings.footer_text || ""}
                     onChange={(e) => handleChange("footer_text", e.target.value)}
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500 resize-none"
+                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500 resize-none"
                   />
                 </div>
 
@@ -223,7 +223,7 @@ export default function AdminSettingsPage() {
                     type="text"
                     value={settings.copyright_text || ""}
                     onChange={(e) => handleChange("copyright_text", e.target.value)}
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -234,7 +234,7 @@ export default function AdminSettingsPage() {
         {/* 2. Hero Banner */}
         {activeTab === "hero" && (
           <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-5 animate-in fade-in">
-            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
               Hero Section Customization
             </h2>
 
@@ -246,7 +246,7 @@ export default function AdminSettingsPage() {
                   value={settings.hero_label || ""}
                   onChange={(e) => handleChange("hero_label", e.target.value)}
                   placeholder="DIGITAL ART & CREATIVE DESIGN"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -258,7 +258,7 @@ export default function AdminSettingsPage() {
                   value={settings.hero_heading || ""}
                   onChange={(e) => handleChange("hero_heading", e.target.value)}
                   placeholder="Creative Art That Brings Ideas To Life"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -270,7 +270,7 @@ export default function AdminSettingsPage() {
                   value={settings.hero_description || ""}
                   onChange={(e) => handleChange("hero_description", e.target.value)}
                   placeholder="A curated collection of characters, artwork, overlays, avatars..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500 resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500 resize-none"
                 />
               </div>
 
@@ -282,7 +282,7 @@ export default function AdminSettingsPage() {
                     value={settings.primary_cta_text || ""}
                     onChange={(e) => handleChange("primary_cta_text", e.target.value)}
                     placeholder="Explore Portfolio"
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -292,7 +292,7 @@ export default function AdminSettingsPage() {
                     value={settings.primary_cta_link || ""}
                     onChange={(e) => handleChange("primary_cta_link", e.target.value)}
                     placeholder="/gallery"
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
 
@@ -303,7 +303,7 @@ export default function AdminSettingsPage() {
                     value={settings.secondary_cta_text || ""}
                     onChange={(e) => handleChange("secondary_cta_text", e.target.value)}
                     placeholder="Start a Project"
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -313,7 +313,7 @@ export default function AdminSettingsPage() {
                     value={settings.secondary_cta_link || ""}
                     onChange={(e) => handleChange("secondary_cta_link", e.target.value)}
                     placeholder="/contact"
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -336,7 +336,7 @@ export default function AdminSettingsPage() {
         {/* 3. About & Stats */}
         {activeTab === "about" && (
           <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-5 animate-in fade-in">
-            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
               About & Experience
             </h2>
 
@@ -347,7 +347,7 @@ export default function AdminSettingsPage() {
                   type="text"
                   value={settings.about_heading || ""}
                   onChange={(e) => handleChange("about_heading", e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -357,7 +357,7 @@ export default function AdminSettingsPage() {
                   rows={4}
                   value={settings.about_description || ""}
                   onChange={(e) => handleChange("about_description", e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500 resize-y"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500 resize-y"
                 />
               </div>
 
@@ -367,7 +367,7 @@ export default function AdminSettingsPage() {
                   type="text"
                   value={settings.experience_text || ""}
                   onChange={(e) => handleChange("experience_text", e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -390,7 +390,7 @@ export default function AdminSettingsPage() {
                     value={settings.stats_projects || ""}
                     onChange={(e) => handleChange("stats_projects", e.target.value)}
                     placeholder="500+"
-                    className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -400,7 +400,7 @@ export default function AdminSettingsPage() {
                     value={settings.stats_clients || ""}
                     onChange={(e) => handleChange("stats_clients", e.target.value)}
                     placeholder="120+"
-                    className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -410,7 +410,7 @@ export default function AdminSettingsPage() {
                     value={settings.stats_categories || ""}
                     onChange={(e) => handleChange("stats_categories", e.target.value)}
                     placeholder="12+"
-                    className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 focus:outline-none focus:border-purple-500"
+                    className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-mono text-zinc-100 focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -421,7 +421,7 @@ export default function AdminSettingsPage() {
         {/* 4. Contact Info */}
         {activeTab === "contact" && (
           <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-5 animate-in fade-in">
-            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
               Direct Contact Details
             </h2>
 
@@ -433,7 +433,7 @@ export default function AdminSettingsPage() {
                   value={settings.contact_email || ""}
                   onChange={(e) => handleChange("contact_email", e.target.value)}
                   placeholder="commissions@studio.art"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -444,7 +444,7 @@ export default function AdminSettingsPage() {
                   value={settings.discord || ""}
                   onChange={(e) => handleChange("discord", e.target.value)}
                   placeholder="artist#0001 or discord.gg/..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -454,7 +454,7 @@ export default function AdminSettingsPage() {
                   type="text"
                   value={settings.phone || ""}
                   onChange={(e) => handleChange("phone", e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -464,7 +464,7 @@ export default function AdminSettingsPage() {
                   type="text"
                   value={settings.whatsapp || ""}
                   onChange={(e) => handleChange("whatsapp", e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -474,7 +474,7 @@ export default function AdminSettingsPage() {
         {/* 5. Social Links */}
         {activeTab === "social" && (
           <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-5 animate-in fade-in">
-            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
               Social Handles & Portfolio Profiles
             </h2>
 
@@ -486,7 +486,7 @@ export default function AdminSettingsPage() {
                   value={settings.artstation || ""}
                   onChange={(e) => handleChange("artstation", e.target.value)}
                   placeholder="https://artstation.com/..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -497,7 +497,7 @@ export default function AdminSettingsPage() {
                   value={settings.behance || ""}
                   onChange={(e) => handleChange("behance", e.target.value)}
                   placeholder="https://behance.net/..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -508,7 +508,7 @@ export default function AdminSettingsPage() {
                   value={settings.twitter || ""}
                   onChange={(e) => handleChange("twitter", e.target.value)}
                   placeholder="https://x.com/..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -519,7 +519,7 @@ export default function AdminSettingsPage() {
                   value={settings.instagram || ""}
                   onChange={(e) => handleChange("instagram", e.target.value)}
                   placeholder="https://instagram.com/..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -530,7 +530,7 @@ export default function AdminSettingsPage() {
                   value={settings.youtube || ""}
                   onChange={(e) => handleChange("youtube", e.target.value)}
                   placeholder="https://youtube.com/@..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -541,7 +541,7 @@ export default function AdminSettingsPage() {
                   value={settings.tiktok || ""}
                   onChange={(e) => handleChange("tiktok", e.target.value)}
                   placeholder="https://tiktok.com/@..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-purple-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-zinc-100 focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -551,7 +551,7 @@ export default function AdminSettingsPage() {
         {/* 6. Theme Accents */}
         {activeTab === "theme" && (
           <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-5 animate-in fade-in">
-            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-purple-400">
+            <h2 className="text-sm font-semibold text-white uppercase tracking-wider text-blue-400">
               Palette & Accent Accents
             </h2>
 
@@ -600,7 +600,7 @@ export default function AdminSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/25 transition-all disabled:opacity-50"
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/25 transition-all disabled:opacity-50"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             <span>Save All Settings</span>

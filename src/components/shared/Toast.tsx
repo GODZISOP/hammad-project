@@ -84,12 +84,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                   ? "bg-zinc-900/95 border-emerald-500/30 text-emerald-300"
                   : t.type === "error"
                   ? "bg-zinc-900/95 border-rose-500/30 text-rose-300"
-                  : "bg-zinc-900/95 border-purple-500/30 text-purple-300"
+                  : "bg-zinc-900/95 border-blue-500/30 text-blue-300"
               }`}
             >
               {t.type === "success" && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />}
               {t.type === "error" && <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />}
-              {t.type === "info" && <Info className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />}
+              {t.type === "info" && <Info className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />}
               <div className="flex-1 text-sm">
                 {t.title && <div className="font-semibold text-white mb-0.5">{t.title}</div>}
                 <div className="text-zinc-300 leading-relaxed">{t.message}</div>

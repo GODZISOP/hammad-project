@@ -26,7 +26,7 @@ export function AdminHeader({ onToggleMobile, title }: AdminHeaderProps) {
       <div className="flex items-center gap-3">
         <Link
           href="/admin/artworks/new"
-          className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-md shadow-purple-600/20 transition-all active:scale-95"
+          className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-md shadow-blue-600/20 transition-all active:scale-95"
         >
           <Plus className="w-4 h-4" />
           <span className="hidden sm:inline">Add Artwork</span>

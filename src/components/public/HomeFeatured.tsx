@@ -23,8 +23,8 @@ export function HomeFeatured({ artworks }: HomeFeaturedProps) {
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ff4655]">
-              <Crosshair className="w-3.5 h-3.5 text-[#ff4655]" />
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#2563eb]">
+              <Crosshair className="w-3.5 h-3.5 text-[#2563eb]" />
               <span>PRIMARY SELECTION // HIGHLIGHT OF WEEK</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-mono font-extrabold text-white tracking-tighter uppercase">
@@ -37,7 +37,7 @@ export function HomeFeatured({ artworks }: HomeFeaturedProps) {
 
           <Link
             href="/gallery"
-            className="inline-flex items-center gap-2 px-5 py-2.5 chamfer-btn bg-[#161824] hover:bg-[#ff4655] text-zinc-200 hover:text-white font-mono text-xs font-bold border border-white/10 transition-colors self-start sm:self-auto"
+            className="inline-flex items-center gap-2 px-5 py-2.5 chamfer-btn bg-[#161824] hover:bg-[#2563eb] text-zinc-200 hover:text-white font-mono text-xs font-bold border border-white/10 transition-colors self-start sm:self-auto"
           >
             <span>VIEW ALL ARTWORKS</span>
             <ArrowRight className="w-3.5 h-3.5" />

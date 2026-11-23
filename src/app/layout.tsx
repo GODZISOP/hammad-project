@@ -14,9 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LUMINA // Digital Art & Creative Studio",
+  title: "Crytonix Solution // Digital Art & Creative Studio",
   description:
-    "Curated collection of original characters, 3D avatars, VTuber models, Twitch stream assets, and digital art.",
+    "Curated collection of original characters, 3D avatars, VTuber models, Twitch stream assets, and digital art by Crytonix Solution.",
+  icons: {
+    icon: "/images/crytonix-icon.png",
+  },
 };
 
 export default function RootLayout({

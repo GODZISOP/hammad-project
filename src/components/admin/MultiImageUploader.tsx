@@ -168,7 +168,7 @@ export function MultiImageUploader({
                 value={item.caption || ""}
                 onChange={(e) => updateCaption(idx, e.target.value)}
                 placeholder="Image caption / angle"
-                className="w-full text-xs px-2 py-1.5 rounded-md bg-zinc-950 border border-zinc-800 text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+                className="w-full text-xs px-2 py-1.5 rounded-md bg-zinc-950 border border-zinc-800 text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
               />
             </div>
           ))}
@@ -178,22 +178,22 @@ export function MultiImageUploader({
       {/* Upload Zone */}
       <div
         onClick={() => !isUploading && fileInputRef.current?.click()}
-        className={`w-full py-8 px-4 rounded-xl border-2 border-dashed border-zinc-800 hover:border-purple-500/50 bg-zinc-950/40 hover:bg-zinc-900/40 transition-all flex flex-col items-center justify-center text-center cursor-pointer ${
+        className={`w-full py-8 px-4 rounded-xl border-2 border-dashed border-zinc-800 hover:border-blue-500/50 bg-zinc-950/40 hover:bg-zinc-900/40 transition-all flex flex-col items-center justify-center text-center cursor-pointer ${
           isUploading ? "opacity-75 cursor-not-allowed" : ""
         }`}
       >
         {isUploading ? (
           <div className="flex flex-col items-center gap-2">
-            <Loader2 className="w-6 h-6 text-purple-400 animate-spin" />
+            <Loader2 className="w-6 h-6 text-blue-400 animate-spin" />
             <p className="text-sm text-zinc-300 font-medium">{uploadProgress}</p>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-1.5">
             <div className="p-2.5 rounded-xl bg-zinc-900 text-zinc-400 border border-zinc-800">
-              <UploadCloud className="w-5 h-5 text-purple-400" />
+              <UploadCloud className="w-5 h-5 text-blue-400" />
             </div>
             <p className="text-sm font-medium text-zinc-300">
-              Drop images or <span className="text-purple-400">browse</span>
+              Drop images or <span className="text-blue-400">browse</span>
             </p>
             <p className="text-xs text-zinc-500">Supports selecting multiple files at once</p>
           </div>

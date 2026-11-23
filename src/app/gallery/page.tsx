@@ -59,7 +59,7 @@ export default async function GalleryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-mono font-medium">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-300 text-xs font-mono font-medium">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Full Portfolio Archive</span>
             </div>

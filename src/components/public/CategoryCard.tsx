@@ -32,7 +32,7 @@ export function CategoryCard({
     >
       <Link
         href={`/category/${category.slug}`}
-        className="group relative block aspect-[4/5] sm:aspect-[16/11] chamfer-card overflow-hidden border border-white/10 hover:border-[#ff4655] transition-all duration-300"
+        className="group relative block aspect-[4/5] sm:aspect-[16/11] chamfer-card overflow-hidden border border-white/10 hover:border-[#2563eb] transition-all duration-300"
       >
         {/* Cover Image */}
         <Image
@@ -49,21 +49,21 @@ export function CategoryCard({
         {/* Top Header: Index & Count */}
         <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/10 text-white font-mono text-[10px] font-bold">
-            <span className="text-[#ff4655]">#{formattedIndex}</span>
+            <span className="text-[#2563eb]">#{formattedIndex}</span>
             <span>{"//"} {artworkCount} ARTWORKS</span>
           </div>
 
-          <div className="w-8 h-8 chamfer-btn bg-[#ff4655] text-white flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors shadow-md">
+          <div className="w-8 h-8 chamfer-btn bg-[#2563eb] text-white flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors shadow-md">
             <ArrowUpRight className="w-4 h-4" />
           </div>
         </div>
 
         {/* Bottom Metadata Block */}
         <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 z-10 space-y-1 bg-gradient-to-t from-black via-black/80 to-transparent">
-          <span className="text-[9px] font-mono uppercase text-[#ff4655] tracking-widest block font-bold">
+          <span className="text-[9px] font-mono uppercase text-[#2563eb] tracking-widest block font-bold">
             CLIENT SPEC & ARCHIVE
           </span>
-          <h3 className="text-lg sm:text-xl font-mono font-extrabold text-white tracking-tight uppercase group-hover:text-[#ff4655] transition-colors">
+          <h3 className="text-lg sm:text-xl font-mono font-extrabold text-white tracking-tight uppercase group-hover:text-[#2563eb] transition-colors">
             {category.name}
           </h3>
 

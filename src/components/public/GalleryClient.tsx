@@ -80,15 +80,15 @@ export function GalleryClient({
         {/* Search Bar */}
         <div className="relative max-w-2xl mx-auto">
           <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-zinc-500 font-mono text-xs">
-            <Crosshair className="w-4 h-4 text-[#ff4655]" />
-            <span className="text-[#ff4655] font-bold">QUERY //</span>
+            <Crosshair className="w-4 h-4 text-[#2563eb]" />
+            <span className="text-[#2563eb] font-bold">QUERY //</span>
           </div>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
             placeholder="Search by title, tag, category, or style..."
-            className="w-full pl-28 pr-12 py-3.5 bg-[#10121a] border border-white/10 text-xs font-mono text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#ff4655] shadow-2xl transition-all"
+            className="w-full pl-28 pr-12 py-3.5 bg-[#10121a] border border-white/10 text-xs font-mono text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#2563eb] shadow-2xl transition-all"
           />
           {searchQuery && (
             <button
@@ -106,7 +106,7 @@ export function GalleryClient({
             onClick={() => handleCategorySelect("all")}
             className={`px-4 py-2 chamfer-btn text-xs font-mono font-bold tracking-wider whitespace-nowrap transition-all ${
               selectedCategory === "all"
-                ? "bg-[#ff4655] text-white shadow-lg shadow-[#ff4655]/30 scale-105"
+                ? "bg-[#2563eb] text-white shadow-lg shadow-[#2563eb]/30 scale-105"
                 : "bg-[#10121a] text-zinc-400 hover:text-white border border-white/10"
             }`}
           >
@@ -119,7 +119,7 @@ export function GalleryClient({
               onClick={() => handleCategorySelect(cat.slug)}
               className={`px-4 py-2 chamfer-btn text-xs font-mono font-bold tracking-wider whitespace-nowrap transition-all ${
                 selectedCategory === cat.slug
-                  ? "bg-[#ff4655] text-white shadow-lg shadow-[#ff4655]/30 scale-105"
+                  ? "bg-[#2563eb] text-white shadow-lg shadow-[#2563eb]/30 scale-105"
                   : "bg-[#10121a] text-zinc-400 hover:text-white border border-white/10"
               }`}
             >
@@ -139,7 +139,7 @@ export function GalleryClient({
         {selectedCategory !== "all" && (
           <button
             onClick={() => handleCategorySelect("all")}
-            className="text-[#ff4655] hover:underline"
+            className="text-[#2563eb] hover:underline"
           >
             RESET DISCIPLINE FILTER [X]
           </button>
@@ -176,9 +176,9 @@ export function GalleryClient({
         <div className="pt-8 text-center">
           <button
             onClick={handleLoadMore}
-            className="inline-flex items-center gap-2 px-8 py-3.5 chamfer-btn bg-[#161824] hover:bg-[#ff4655] text-zinc-200 hover:text-white font-mono font-bold text-xs tracking-widest border border-white/10 shadow-xl transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 chamfer-btn bg-[#161824] hover:bg-[#2563eb] text-zinc-200 hover:text-white font-mono font-bold text-xs tracking-widest border border-white/10 shadow-xl transition-all"
           >
-            <RefreshCw className="w-4 h-4 text-[#ff4655]" />
+            <RefreshCw className="w-4 h-4 text-[#2563eb]" />
             <span>LOAD MORE WORKS [{filtered.length - visibleCount} REMAINING]</span>
           </button>
         </div>

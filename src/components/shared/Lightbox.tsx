@@ -74,7 +74,7 @@ export function Lightbox({
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center gap-3">
-            <span className="text-sm font-mono text-purple-400 bg-purple-950/60 border border-purple-500/20 px-3 py-1 rounded-full">
+            <span className="text-sm font-mono text-blue-400 bg-blue-950/60 border border-blue-500/20 px-3 py-1 rounded-full">
               {currentIndex + 1} / {images.length}
             </span>
             {currentImage.title && (
@@ -92,7 +92,7 @@ export function Lightbox({
                 }
               }}
               title="Open full resolution in new tab"
-              className="p-2.5 rounded-full bg-zinc-900/80 hover:bg-purple-900/40 text-zinc-400 hover:text-white transition-all border border-zinc-800"
+              className="p-2.5 rounded-full bg-zinc-900/80 hover:bg-blue-900/40 text-zinc-400 hover:text-white transition-all border border-zinc-800"
             >
               <Maximize2 className="w-5 h-5" />
             </button>
@@ -113,7 +113,7 @@ export function Lightbox({
               e.stopPropagation();
               handlePrev();
             }}
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-zinc-900/80 hover:bg-purple-950/80 text-zinc-300 hover:text-white border border-zinc-800 transition-all backdrop-blur-md shadow-xl"
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-zinc-900/80 hover:bg-blue-950/80 text-zinc-300 hover:text-white border border-zinc-800 transition-all backdrop-blur-md shadow-xl"
             aria-label="Previous artwork image"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -163,7 +163,7 @@ export function Lightbox({
               e.stopPropagation();
               handleNext();
             }}
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-zinc-900/80 hover:bg-purple-950/80 text-zinc-300 hover:text-white border border-zinc-800 transition-all backdrop-blur-md shadow-xl"
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-zinc-900/80 hover:bg-blue-950/80 text-zinc-300 hover:text-white border border-zinc-800 transition-all backdrop-blur-md shadow-xl"
             aria-label="Next artwork image"
           >
             <ChevronRight className="w-6 h-6" />
@@ -182,7 +182,7 @@ export function Lightbox({
                 onClick={() => onIndexChange(idx)}
                 className={`relative w-12 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all ${
                   idx === currentIndex
-                    ? "border-purple-500 scale-105 shadow-md shadow-purple-500/30"
+                    ? "border-blue-500 scale-105 shadow-md shadow-blue-500/30"
                     : "border-transparent opacity-50 hover:opacity-100"
                 }`}
               >

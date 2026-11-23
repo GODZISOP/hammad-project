@@ -172,7 +172,7 @@ export default function AdminArtworksPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2.5">
-            <Palette className="w-6 h-6 text-purple-400" />
+            <Palette className="w-6 h-6 text-blue-400" />
             <span>Artwork Management</span>
           </h1>
           <p className="text-xs text-zinc-400 mt-1">
@@ -182,7 +182,7 @@ export default function AdminArtworksPage() {
 
         <Link
           href="/admin/artworks/new"
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/25 transition-all self-start sm:self-auto"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/25 transition-all self-start sm:self-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Upload Artwork</span>
@@ -199,7 +199,7 @@ export default function AdminArtworksPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by title, tag, or keyword..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
           />
         </div>
 
@@ -208,7 +208,7 @@ export default function AdminArtworksPage() {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-200 focus:outline-none focus:border-purple-500"
+            className="px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-200 focus:outline-none focus:border-blue-500"
           >
             <option value="all">All Categories</option>
             {categories.map((c) => (
@@ -221,7 +221,7 @@ export default function AdminArtworksPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-200 focus:outline-none focus:border-purple-500"
+            className="px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-200 focus:outline-none focus:border-blue-500"
           >
             <option value="all">All Status</option>
             <option value="published">Published</option>
@@ -235,7 +235,7 @@ export default function AdminArtworksPage() {
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 overflow-hidden">
         {loading ? (
           <div className="p-16 text-center text-zinc-500 flex flex-col items-center gap-3">
-            <Loader2 className="w-6 h-6 animate-spin text-purple-400" />
+            <Loader2 className="w-6 h-6 animate-spin text-blue-400" />
             <span className="text-xs">Loading artworks...</span>
           </div>
         ) : filtered.length === 0 ? (
@@ -243,7 +243,7 @@ export default function AdminArtworksPage() {
             <p>No artworks match your search or filter criteria.</p>
             <Link
               href="/admin/artworks/new"
-              className="inline-block text-xs text-purple-400 hover:underline font-medium"
+              className="inline-block text-xs text-blue-400 hover:underline font-medium"
             >
               + Create a new artwork
             </Link>
@@ -309,7 +309,7 @@ export default function AdminArtworksPage() {
 
                     {/* Category */}
                     <td className="px-6 py-4">
-                      <span className="text-xs font-medium text-purple-300 bg-purple-950/60 border border-purple-500/20 px-2.5 py-1 rounded-md">
+                      <span className="text-xs font-medium text-blue-300 bg-blue-950/60 border border-blue-500/20 px-2.5 py-1 rounded-md">
                         {art.category?.name || "Uncategorized"}
                       </span>
                     </td>
@@ -373,7 +373,7 @@ export default function AdminArtworksPage() {
                         </Link>
                         <Link
                           href={`/admin/artworks/${art.id}/edit`}
-                          className="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-purple-400 hover:text-purple-300 transition-colors"
+                          className="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-blue-400 hover:text-blue-300 transition-colors"
                           title="Edit artwork"
                         >
                           <Edit2 className="w-3.5 h-3.5" />

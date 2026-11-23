@@ -23,11 +23,11 @@ export function HomeHero({ settings, featuredArtwork }: HomeHeroProps) {
       {/* Top Tactical Status Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-6 flex items-center justify-between text-[11px] font-mono text-zinc-500 border-b border-white/5">
         <div className="flex items-center gap-3">
-          <span className="w-2 h-2 rounded-full bg-[#ff4655] animate-ping" />
-          <span className="text-[#ff4655] font-bold">STATUS: RECEPTIVE // COMMISSIONS LIVE</span>
+          <span className="w-2 h-2 rounded-full bg-[#2563eb] animate-ping" />
+          <span className="text-[#2563eb] font-bold">STATUS: RECEPTIVE // COMMISSIONS LIVE</span>
         </div>
         <div className="hidden sm:flex items-center gap-6">
-          <span>PIPELINE: BLENDER • ZBRUSH • PHOTOSHOP • LIVE2D • UNITY</span>
+          <span>PIPELINE: BLENDER â€¢ ZBRUSH â€¢ PHOTOSHOP â€¢ LIVE2D â€¢ UNITY</span>
           <span>SYS_VER // 2026.4</span>
         </div>
       </div>
@@ -43,15 +43,15 @@ export function HomeHero({ settings, featuredArtwork }: HomeHeroProps) {
           >
             {/* Meta Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#161824] border border-white/10 text-xs font-mono text-zinc-300">
-              <Crosshair className="w-3.5 h-3.5 text-[#ff4655]" />
-              <span className="text-[#ff4655] font-bold font-mono">SECTOR_01 //</span>
+              <Crosshair className="w-3.5 h-3.5 text-[#2563eb]" />
+              <span className="text-[#2563eb] font-bold font-mono">SECTOR_01 //</span>
               <span className="tracking-wider">{settings.hero_label || "CONCEPT ART & VIRTUAL AVATARS"}</span>
             </div>
 
             {/* Main Title with Valorant / High-Tech Streetwear Impact */}
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tighter uppercase leading-[1.05] font-mono">
               REVOLUTIONIZING <br />
-              <span className="text-[#ff4655] underline decoration-[#ff4655]/40 decoration-4">DIGITAL ART</span> & IDENTITIES
+              <span className="text-[#2563eb] underline decoration-[#2563eb]/40 decoration-4">DIGITAL ART</span> & IDENTITIES
             </h1>
 
             {/* Description */}
@@ -64,7 +64,7 @@ export function HomeHero({ settings, featuredArtwork }: HomeHeroProps) {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href={settings.primary_cta_link || "/gallery"}
-                className="inline-flex items-center gap-3 px-8 py-4 chamfer-btn bg-[#ff4655] hover:bg-[#ff5a68] text-white font-mono font-extrabold text-xs tracking-widest shadow-xl shadow-[#ff4655]/25"
+                className="inline-flex items-center gap-3 px-8 py-4 chamfer-btn bg-[#2563eb] hover:bg-[#3b82f6] text-white font-mono font-extrabold text-xs tracking-widest shadow-xl shadow-[#2563eb]/25"
               >
                 <span>EXPLORE ARCHIVE</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -103,9 +103,9 @@ export function HomeHero({ settings, featuredArtwork }: HomeHeroProps) {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="lg:col-span-5 relative"
           >
-            <div className="relative chamfer-card p-2.5 bg-[#12141e] border-2 border-[#ff4655]/40 shadow-2xl">
+            <div className="relative chamfer-card p-2.5 bg-[#12141e] border-2 border-[#2563eb]/40 shadow-2xl">
               {/* Tactical Corner Crosshairs */}
-              <div className="absolute top-2 left-2 z-20 text-[9px] font-mono text-[#ff4655] font-bold bg-black/80 px-2 py-0.5 border border-[#ff4655]/30">
+              <div className="absolute top-2 left-2 z-20 text-[9px] font-mono text-[#2563eb] font-bold bg-black/80 px-2 py-0.5 border border-[#2563eb]/30">
                 {"// TARGET_LOCK: "}{featuredArtwork?.category?.name || "SIGNATURE"}
               </div>
 
@@ -122,7 +122,7 @@ export function HomeHero({ settings, featuredArtwork }: HomeHeroProps) {
                 {/* Bottom Overlay Label */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent flex items-end justify-between">
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono uppercase text-[#ff4655] font-bold tracking-widest block">
+                    <span className="text-[10px] font-mono uppercase text-[#2563eb] font-bold tracking-widest block">
                       {featuredArtwork?.category?.name || "ARCHIVE SELECTION"}
                     </span>
                     <h3 className="text-base font-mono font-extrabold text-white tracking-tight">
@@ -136,7 +136,7 @@ export function HomeHero({ settings, featuredArtwork }: HomeHeroProps) {
                         ? `/artwork/${featuredArtwork.slug}`
                         : "/gallery"
                     }
-                    className="p-2.5 chamfer-btn bg-[#ff4655] text-white hover:bg-white hover:text-black transition-colors"
+                    className="p-2.5 chamfer-btn bg-[#2563eb] text-white hover:bg-white hover:text-black transition-colors"
                     title="Inspect Art"
                   >
                     <ArrowUpRight className="w-4 h-4" />
@@ -151,7 +151,7 @@ export function HomeHero({ settings, featuredArtwork }: HomeHeroProps) {
       {/* Metrics Banner (from Reference 1: "1M Users, 50M Impressions, 500K Happy Clients") */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 border-t border-white/10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
-          <div className="border-l-2 border-[#ff4655] pl-4">
+          <div className="border-l-2 border-[#2563eb] pl-4">
             <span className="text-2xl sm:text-3xl font-mono font-extrabold text-white block">
               {settings.stats_projects || "500+"}
             </span>

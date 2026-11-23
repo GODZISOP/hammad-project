@@ -128,7 +128,7 @@ export default function AdminMessagesPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2.5">
-          <Mail className="w-6 h-6 text-pink-400" />
+          <Mail className="w-6 h-6 text-cyan-400" />
           <span>Commission Messages</span>
         </h1>
         <p className="text-xs text-zinc-400 mt-1">
@@ -151,7 +151,7 @@ export default function AdminMessagesPage() {
               onClick={() => setSelectedStatus(tab.id)}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
                 selectedStatus === tab.id
-                  ? "bg-purple-600/20 text-purple-300 border border-purple-500/30"
+                  ? "bg-blue-600/20 text-blue-300 border border-blue-500/30"
                   : "bg-zinc-900/60 text-zinc-400 hover:text-zinc-200 border border-zinc-800"
               }`}
             >
@@ -159,7 +159,7 @@ export default function AdminMessagesPage() {
               <span
                 className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
                   tab.id === "new" && tab.count > 0
-                    ? "bg-purple-500 text-white font-bold"
+                    ? "bg-blue-500 text-white font-bold"
                     : "bg-zinc-800 text-zinc-400"
                 }`}
               >
@@ -177,7 +177,7 @@ export default function AdminMessagesPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search inquiries..."
-            className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-purple-500"
+            className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500"
           />
         </div>
       </div>
@@ -186,7 +186,7 @@ export default function AdminMessagesPage() {
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 overflow-hidden divide-y divide-zinc-800/60">
         {loading ? (
           <div className="p-16 text-center text-zinc-500 flex flex-col items-center gap-3">
-            <Loader2 className="w-6 h-6 animate-spin text-purple-400" />
+            <Loader2 className="w-6 h-6 animate-spin text-blue-400" />
             <span className="text-xs">Loading messages...</span>
           </div>
         ) : filtered.length === 0 ? (
@@ -205,7 +205,7 @@ export default function AdminMessagesPage() {
               }}
               className={`p-4 md:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer transition-colors ${
                 msg.status === "new"
-                  ? "bg-purple-950/20 hover:bg-purple-950/30"
+                  ? "bg-blue-950/20 hover:bg-blue-950/30"
                   : "hover:bg-zinc-800/40"
               }`}
             >
@@ -213,7 +213,7 @@ export default function AdminMessagesPage() {
                 <div
                   className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border ${
                     msg.status === "new"
-                      ? "bg-purple-900/40 border-purple-500/30 text-purple-300"
+                      ? "bg-blue-900/40 border-blue-500/30 text-blue-300"
                       : "bg-zinc-800 border-zinc-700 text-zinc-400"
                   }`}
                 >
@@ -225,7 +225,7 @@ export default function AdminMessagesPage() {
                     <span className="text-sm font-semibold text-white">{msg.name}</span>
                     <span className="text-xs text-zinc-500">&lt;{msg.email}&gt;</span>
                     {msg.discord_username && (
-                      <span className="text-[11px] font-mono text-purple-400 bg-purple-950/50 border border-purple-500/20 px-1.5 py-0.2 rounded">
+                      <span className="text-[11px] font-mono text-blue-400 bg-blue-950/50 border border-blue-500/20 px-1.5 py-0.2 rounded">
                         @{msg.discord_username}
                       </span>
                     )}
@@ -244,7 +244,7 @@ export default function AdminMessagesPage() {
                   <span
                     className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-full ${
                       msg.status === "new"
-                        ? "bg-purple-900/80 text-purple-300 border border-purple-500/30 font-bold"
+                        ? "bg-blue-900/80 text-blue-300 border border-blue-500/30 font-bold"
                         : msg.status === "replied"
                         ? "bg-blue-950/80 text-blue-400 border border-blue-500/30"
                         : msg.status === "archived"
@@ -294,7 +294,7 @@ export default function AdminMessagesPage() {
                 <span className="text-zinc-500 block">Email Address</span>
                 <a
                   href={`mailto:${activeMessage.email}`}
-                  className="font-medium text-purple-400 hover:underline"
+                  className="font-medium text-blue-400 hover:underline"
                 >
                   {activeMessage.email}
                 </a>
@@ -341,9 +341,9 @@ export default function AdminMessagesPage() {
 
               <div className="flex items-center gap-2">
                 <a
-                  href={`mailto:${activeMessage.email}?subject=Regarding your commission inquiry on LUMINA`}
+                  href={`mailto:${activeMessage.email}?subject=Regarding your commission inquiry on Crytonix Solution`}
                   onClick={() => updateStatus(activeMessage.id, "replied")}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-md shadow-purple-600/20 transition-all"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-md shadow-blue-600/20 transition-all"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Reply via Email</span>

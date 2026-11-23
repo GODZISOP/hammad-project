@@ -1,42 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --bg-dark: #090a0f;
-  --bg-card: #10121a;
-  --bg-card-hover: #161824;
-  --accent-red: #ff4655;
-  --accent-volt: #d4ff00;
-  --accent-cyan: #00f2fe;
-  --text-main: #ece8e1;
-  --text-muted: #7e828d;
-  --border-tactical: rgba(255, 255, 255, 0.12);
+  --bg-dark: #05070b;
+  --bg-card: #0b0f19;
+  --bg-card-hover: #111827;
+  --accent-blue: #2563eb;
+  --accent-blue-light: #3b82f6;
+  --accent-cyan: #38bdf8;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-tactical: rgba(59, 130, 246, 0.16);
 }
 
 body {
-  background-color: #090a0f;
-  color: #ece8e1;
+  background-color: #05070b;
+  color: #f1f5f9;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
 }
 
 ::selection {
-  background: #ff4655;
+  background: #2563eb;
   color: #ffffff;
 }
 
-/* Tactical Chamfered Cards (Riot / Valorant / Streetwear style) */
+/* Tactical Chamfered Cards (Black & Blue Crytonix style) */
 .chamfer-card {
   clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
-  background: #10121a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0b0f19;
+  border: 1px solid rgba(59, 130, 246, 0.14);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .chamfer-card:hover {
-  background: #151824;
-  border-color: #ff4655;
-  box-shadow: 0 15px 35px -10px rgba(255, 70, 85, 0.25);
+  background: #0f172a;
+  border-color: #3b82f6;
+  box-shadow: 0 15px 35px -10px rgba(37, 99, 235, 0.3);
 }
 
 .chamfer-tag {
@@ -68,8 +68,8 @@ body {
   left: 0;
   width: 8px;
   height: 8px;
-  border-top: 2px solid #ff4655;
-  border-left: 2px solid #ff4655;
+  border-top: 2px solid #3b82f6;
+  border-left: 2px solid #3b82f6;
   pointer-events: none;
 }
 
@@ -80,8 +80,8 @@ body {
   right: 0;
   width: 8px;
   height: 8px;
-  border-bottom: 2px solid #ff4655;
-  border-right: 2px solid #ff4655;
+  border-bottom: 2px solid #3b82f6;
+  border-right: 2px solid #3b82f6;
   pointer-events: none;
 }
 
@@ -103,8 +103,8 @@ body {
 .hazard-stripe {
   background: repeating-linear-gradient(
     -45deg,
-    rgba(255, 70, 85, 0.15),
-    rgba(255, 70, 85, 0.15) 10px,
+    rgba(37, 99, 235, 0.18),
+    rgba(37, 99, 235, 0.18) 10px,
     transparent 10px,
     transparent 20px
   );

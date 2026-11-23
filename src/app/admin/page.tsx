@@ -102,7 +102,7 @@ export default function AdminDashboardPage() {
       label: "Total Artworks",
       value: stats.totalArtworks,
       icon: Palette,
-      color: "from-purple-500/20 to-indigo-500/10 text-purple-400 border-purple-500/20",
+      color: "from-blue-500/20 to-indigo-500/10 text-blue-400 border-blue-500/20",
     },
     {
       label: "Categories",
@@ -132,16 +132,16 @@ export default function AdminDashboardPage() {
       label: "New Messages",
       value: stats.newMessages,
       icon: Mail,
-      color: "from-pink-500/20 to-rose-500/10 text-pink-400 border-pink-500/20",
+      color: "from-cyan-500/20 to-rose-500/10 text-cyan-400 border-cyan-500/20",
     },
   ];
 
   return (
     <div className="space-y-8">
       {/* Welcome & Quick Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-purple-950/40 via-zinc-900 to-zinc-900 border border-purple-900/30">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-blue-950/40 via-zinc-900 to-zinc-900 border border-blue-900/30">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-purple-400 mb-1">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 mb-1">
             <Sparkles className="w-4 h-4" />
             <span>Studio Management Hub</span>
           </div>
@@ -156,7 +156,7 @@ export default function AdminDashboardPage() {
         <div className="flex items-center gap-3 shrink-0">
           <Link
             href="/admin/artworks/new"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs shadow-lg shadow-purple-600/25 transition-all"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs shadow-lg shadow-blue-600/25 transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Add Artwork</span>
@@ -198,12 +198,12 @@ export default function AdminDashboardPage() {
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold text-white flex items-center gap-2">
-              <Palette className="w-4 h-4 text-purple-400" />
+              <Palette className="w-4 h-4 text-blue-400" />
               <span>Recently Added Artworks</span>
             </h2>
             <Link
               href="/admin/artworks"
-              className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-medium"
+              className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1 font-medium"
             >
               <span>View all</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -234,7 +234,7 @@ export default function AdminDashboardPage() {
                     <div className="min-w-0">
                       <h4 className="text-sm font-medium text-white truncate">{art.title}</h4>
                       <p className="text-xs text-zinc-400 truncate">
-                        {art.category?.name || "Uncategorized"} • {formatDate(art.created_at)}
+                        {art.category?.name || "Uncategorized"} â€¢ {formatDate(art.created_at)}
                       </p>
                     </div>
                   </div>
@@ -256,7 +256,7 @@ export default function AdminDashboardPage() {
                     </span>
                     <Link
                       href={`/admin/artworks/${art.id}/edit`}
-                      className="text-xs text-purple-400 hover:text-purple-300 font-medium px-2.5 py-1 rounded-lg hover:bg-purple-950/40 transition-colors"
+                      className="text-xs text-blue-400 hover:text-blue-300 font-medium px-2.5 py-1 rounded-lg hover:bg-blue-950/40 transition-colors"
                     >
                       Edit
                     </Link>
@@ -271,12 +271,12 @@ export default function AdminDashboardPage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold text-white flex items-center gap-2">
-              <Mail className="w-4 h-4 text-pink-400" />
+              <Mail className="w-4 h-4 text-cyan-400" />
               <span>Commission Inquiries</span>
             </h2>
             <Link
               href="/admin/messages"
-              className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 font-medium"
+              className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1 font-medium"
             >
               <span>Inbox</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -299,7 +299,7 @@ export default function AdminDashboardPage() {
                     <span
                       className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded-full ${
                         msg.status === "new"
-                          ? "bg-purple-950/80 text-purple-300 border border-purple-500/30 font-bold"
+                          ? "bg-blue-950/80 text-blue-300 border border-blue-500/30 font-bold"
                           : "bg-zinc-800 text-zinc-400"
                       }`}
                     >
